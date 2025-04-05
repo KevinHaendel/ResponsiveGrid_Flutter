@@ -79,7 +79,7 @@ class ResponsiveGridRow extends StatelessWidget {
           ));
         }
         if (spacing != null && rows.isNotEmpty) {
-          cols.add(SizedBox(height: spacing!));
+          rows.add(SizedBox(height: spacing!));
         }
         rows.add(Row(
           crossAxisAlignment: this.crossAxisAlignment,
@@ -107,7 +107,7 @@ class ResponsiveGridRow extends StatelessWidget {
         ));
       }
       if (spacing != null && rows.isNotEmpty) {
-        cols.add(SizedBox(height: spacing!));
+        rows.add(SizedBox(height: spacing!));
       }
       rows.add(Row(
         crossAxisAlignment: crossAxisAlignment,
