@@ -72,7 +72,7 @@ class ResponsiveGridRow extends StatelessWidget {
       if (accumulatedWidth + colWidth > rowSegments) {
         if (accumulatedWidth < rowSegments) {
           if (spacing != null && cols.isNotEmpty) {
-            cols.add(SizedBox(width: spacing! * (rowSegments - accumulatedWidth)));
+            cols.add(SizedBox(width: spacing!));
           }
           cols.add(Spacer(
             flex: rowSegments - accumulatedWidth,
@@ -100,7 +100,7 @@ class ResponsiveGridRow extends StatelessWidget {
     if (accumulatedWidth >= 0) {
       if (accumulatedWidth < rowSegments) {
         if (spacing != null && cols.isNotEmpty) {
-          cols.add(SizedBox(width: spacing! * (rowSegments - accumulatedWidth)));
+          cols.add(SizedBox(width: spacing!));
         }
         cols.add(Spacer(
           flex: rowSegments - accumulatedWidth,
