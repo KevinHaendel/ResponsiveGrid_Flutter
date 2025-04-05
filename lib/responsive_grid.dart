@@ -48,12 +48,14 @@ _GridTier _currentSize(BuildContext context) {
 class ResponsiveGridRow extends StatelessWidget {
   final List<ResponsiveGridCol> children;
   final CrossAxisAlignment crossAxisAlignment;
+  final double? spacing;
   final int rowSegments;
 
   const ResponsiveGridRow({
     required this.children,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.rowSegments = 12,
+    this.spacing,
     Key? key,
   }) : super(key: key);
 
@@ -69,9 +71,15 @@ class ResponsiveGridRow extends StatelessWidget {
       //
       if (accumulatedWidth + colWidth > rowSegments) {
         if (accumulatedWidth < rowSegments) {
+          if (spacing != null && cols.isNotEmpty) {
+            cols.add(SizedBox(width: spacing * (rowSegments - accumulatedWidth)));
+          }
           cols.add(Spacer(
             flex: rowSegments - accumulatedWidth,
           ));
+        }
+        if (spacing != null && rows.isNotEmpty) {
+          cols.add(SizedBox(height: spacing));
         }
         rows.add(Row(
           crossAxisAlignment: this.crossAxisAlignment,
@@ -82,15 +90,24 @@ class ResponsiveGridRow extends StatelessWidget {
         accumulatedWidth = 0;
       }
       //
+      if (spacing != null && cols.isNotEmpty) {
+        cols.add(SizedBox(width: spacing));
+      }
       cols.add(col);
       accumulatedWidth += colWidth;
     }
 
     if (accumulatedWidth >= 0) {
       if (accumulatedWidth < rowSegments) {
+        if (spacing != null && cols.isNotEmpty) {
+          cols.add(SizedBox(width: spacing * (rowSegments - accumulatedWidth)));
+        }
         cols.add(Spacer(
           flex: rowSegments - accumulatedWidth,
         ));
+      }
+      if (spacing != null && rows.isNotEmpty) {
+        cols.add(SizedBox(height: spacing));
       }
       rows.add(Row(
         crossAxisAlignment: crossAxisAlignment,
